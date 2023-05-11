@@ -23,8 +23,8 @@ exports.sendMessage = catchAsync(async(req,res,next)=>{
 
  try{
       var message = await Message.create(messageBox);
-     message = await message.populate("sender", "name image").execPopulate();
-     message = await message.populate("chat").execPopulate();
+     message = await message.populate("sender", "name image")
+     message = await message.populate("chat")
      message = await User.populate(message, {
        path: "chat.users",
        select: "name image email",
