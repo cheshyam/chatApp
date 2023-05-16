@@ -75,3 +75,21 @@ if(!message){
 });
 
 
+
+exports.deleteMessage = catchAsync(async(req,res,next)=>{
+
+  const { sendingId} = req.body;
+
+  if(!sendingId){
+    return next('please check your message id',401);
+  };
+
+  await Message.findByIdAndDelete(sendingId);
+
+  res.status(201).json({
+    status:"success",
+    message:'delete the message'
+  })
+
+
+});
